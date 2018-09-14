@@ -1,0 +1,51 @@
+{{define "group"}}
+local -a _{{ .Name }}_arguments
+_{{ .Name }}_arguments=(
+	{{- range .Groups}}
+	'{{ .Name}}:{{.Description}}'
+	{{- end}}
+  {{- range .Commands}}
+	'{{ .Name}}:{{.Description}}'
+	{{- end}}
+)
+
+# groups
+{{- range $group := .Groups}}
+{{- template "group" $group }}
+{{- end}}
+
+__auto-{{.Name}} ()
+{
+  local expl
+  local curcontext="$curcontext" state line
+  local -A opt_args
+
+  _arguments \
+    ':command:->command' \
+    '*::options:->options'
+
+  case $state in
+    (command)
+      _describe -t commands "{{ .Description }}" _{{ .Name }}_arguments
+    ;;
+
+    {{- if or .Groups .Commands}}
+    (options)
+    # subcommands
+    case $line[1] in
+    {{- range .Groups}}
+      ({{ .Name }})
+      __auto-{{ .Name }}
+      ;;
+    {{- end}}
+    {{- range .Commands}}
+      ({{ .Name }})
+      __auto-{{ .Name }}
+      ;;
+    {{- end}}
+    esac
+    ;;
+    {{- end}}
+	esac
+}
+{{end}}
