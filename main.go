@@ -21,10 +21,10 @@ func main() {
 
 	p := persister.NewDiskPersister()
 
-	var gcloudDocs completions.AutoComplete
-	err = p.Load(cacheFile, &gcloudDocs)
+	gcloudDocs := &completions.AutoComplete{}
+	err = p.Load(cacheFile, gcloudDocs)
 	if err != nil {
-		gcloudDocs = *scrapper.Run()
+		scrapper.Run(gcloudDocs)
 		p.Save(cacheFile, gcloudDocs)
 	}
 

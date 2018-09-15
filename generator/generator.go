@@ -8,7 +8,7 @@ import (
 
 var LayoutDir string = "generator"
 
-func Run(s io.Writer, a completions.AutoComplete) {
+func Run(s io.Writer, a *completions.AutoComplete) {
 	tmpl, err := template.ParseGlob(LayoutDir + "/*.gotmpl")
 	if err != nil {
 		panic(err)
