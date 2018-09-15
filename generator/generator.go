@@ -13,7 +13,8 @@ func Run(s io.Writer, a completions.AutoComplete) {
 	if err != nil {
 		panic(err)
 	}
-	tmpl.ExecuteTemplate(s, "compdef", a)
+
+	err = tmpl.ExecuteTemplate(s, "compdef", a)
 	if err != nil {
 		panic(err)
 	}
