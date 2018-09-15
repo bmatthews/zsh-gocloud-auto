@@ -3,11 +3,12 @@ package main
 import (
 	"fmt"
 	"os"
-	"zsh-go-auto/completions"
-	"zsh-go-auto/scrapper"
 
-	"zsh-go-auto/generator"
-	"zsh-go-auto/persister"
+	"github.com/bmatthews/zsh-gocloud-auto/completions"
+	"github.com/bmatthews/zsh-gocloud-auto/scrapper"
+
+	"github.com/bmatthews/zsh-gocloud-auto/generator"
+	"github.com/bmatthews/zsh-gocloud-auto/persister"
 )
 
 func main() {
