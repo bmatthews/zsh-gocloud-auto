@@ -3,7 +3,8 @@ package generator
 import (
 	"html/template"
 	"io"
-	"zsh-go-auto/completions"
+
+	"github.com/bmatthews/zsh-gocloud-auto/completions"
 )
 
 var LayoutDir string = "generator"

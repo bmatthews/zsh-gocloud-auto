@@ -6,7 +6,8 @@ import (
 	"net/http"
 	"strings"
 	"sync"
-	"zsh-go-auto/completions"
+
+	"github.com/bmatthews/zsh-gocloud-auto/completions"
 
 	"github.com/PuerkitoBio/goquery"
 )
