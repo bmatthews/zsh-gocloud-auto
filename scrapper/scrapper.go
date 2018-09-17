@@ -11,14 +11,14 @@ import (
 	"github.com/PuerkitoBio/goquery"
 )
 
-func Run() *completions.AutoComplete {
+func Run(gcloudDocs *completions.AutoComplete) {
 	groups, commands, flags := parsePage("https://cloud.google.com/sdk/gcloud/reference/")
 
 	// this should be recursive not just one deep it could use go routines im sure google can handle it
 	// and there are alot of them :P
 	populateGroups(groups)
 
-	return &completions.AutoComplete{
+	*gcloudDocs = completions.AutoComplete{
 		Name:        "gcloud",
 		Description: "gcloud bla bla bla",
 		Groups:      groups,
